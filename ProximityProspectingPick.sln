@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProximityProspectingPick", "ProximityProspectingPick\ProximityProspectingPick.csproj", "{99A032B8-F993-46E6-9F27-8055EB8CDF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSModLauncher", "VSModLauncher\VSModLauncher.csproj", "{D72E499F-2003-4EBB-8B71-A551EE36131D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		ReleaseAndZip|Any CPU = ReleaseAndZip|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.ReleaseAndZip|Any CPU.Build.0 = ReleaseAndZip|Any CPU
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.ReleaseAndZip|Any CPU.ActiveCfg = ReleaseAndZip|Any CPU
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.ReleaseAndZip|Any CPU.Build.0 = ReleaseAndZip|Any CPU
+		{99A032B8-F993-46E6-9F27-8055EB8CDF25}.ReleaseAndZip|Any CPU.Deploy.0 = ReleaseAndZip|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.ReleaseAndZip|Any CPU.ActiveCfg = ReleaseAndZip|Any CPU
+		{D72E499F-2003-4EBB-8B71-A551EE36131D}.ReleaseAndZip|Any CPU.Build.0 = ReleaseAndZip|Any CPU
+	EndGlobalSection
+EndGlobal

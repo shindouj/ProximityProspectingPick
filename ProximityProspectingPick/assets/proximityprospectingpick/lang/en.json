@@ -1,0 +1,5 @@
+﻿{
+  "search-mode": "Proximity Search Mode",
+  "ore-found": "Closest ore is {0} blocks away!",
+  "ore-not-found": "No ore found in {0} block radius."
+}

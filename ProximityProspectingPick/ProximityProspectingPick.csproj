@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Configurations>Debug;Release;ReleaseAndZip</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <Version>0.0.1</Version>
+        <Authors>Shindou Jeikobu</Authors>
+    </PropertyGroup>
+
+    <PropertyGroup Label="VSModTemplate Debug Properties" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release'))">
+        <DefineConstants>TRACE</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="VintagestoryAPI">
+            <HintPath>$(VINTAGE_STORY)/VintagestoryAPI.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="SkiaSharp">
+            <HintPath>$(VINTAGE_STORY)/Lib/SkiaSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Harmony">
+            <HintPath>$(VINTAGE_STORY)/Lib/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(VINTAGE_STORY)/Lib/Newtonsoft.Json.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="protobuf-net">
+            <HintPath>$(VINTAGE_STORY)/Lib/protobuf-net.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="SurvivalGameMode">
+            <HintPath>$(VINTAGE_STORY)/Mods/VSSurvivalMod.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="SurvivalGameMode">
+            <HintPath>$(VINTAGE_STORY)/Mods/VSEssentials.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+    <Target
+            Name="CleanTheOutput"
+            AfterTargets="build"
+            Condition="$(Configuration.Contains('Release'))">
+        <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
+        <ItemGroup>
+            <Directories Include="$([System.IO.Directory]::GetDirectories('$(OutDir)%(DestinationSubDirectory)', '*', System.IO.SearchOption.AllDirectories))" />
+            <Directories>
+                <Files>$([System.IO.Directory]::GetFiles("%(Directories.Identity)", "*", System.IO.SearchOption.AllDirectories).get_Length())</Files>
+            </Directories>
+        </ItemGroup>
+        <RemoveDir Directories="@(Directories)" Condition="%(Files)=='0'" />
+    </Target>
+    
+    <PropertyGroup Label="ReleaseAndZipProperties" Condition="$(Configuration)=='ReleaseAndZip'">
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+    <Target Name="Package" AfterTargets="CleanTheOutput" Condition="'$(Configuration)' == 'ReleaseAndZip'">
+        <ItemGroup>
+            <FilesToDeleteFromReleaseAndZip Include="$(TargetDir)/$(TargetName)*.zip" />
+        </ItemGroup>
+        <Delete Files="@(FilesToDeleteFromReleaseAndZip)" ContinueOnError="true" />
+        <ZipDirectory DestinationFile="$(TargetDir)\..\$(TargetName).zip" SourceDirectory="$(TargetDir)" Overwrite="true" />
+        <RemoveDir Directories="$(TargetDir)" />
+        <ReadLinesFromFile File="modinfo.json">
+            <Output TaskParameter="Lines" ItemName="FileContents" />
+        </ReadLinesFromFile>
+        <PropertyGroup>
+            <CorrectText>@(FileContents->'%(Identity)', '%0a%0d')</CorrectText>
+            <CorrectVersionNumber>$([System.Text.RegularExpressions.Regex]::Match($(CorrectText), `\d+\.\d+\.\d+`))</CorrectVersionNumber>
+        </PropertyGroup>
+        <Move SourceFiles="$(TargetDir)\..\$(TargetName).zip" DestinationFiles="$(TargetDir)$(TargetName)_v$(CorrectVersionNumber).zip" />
+        <Message Importance="high" Text="Created zip file at $(TargetDir)$(TargetName)_v$(CorrectVersionNumber).zip" />
+    </Target>
+
+    <ItemGroup Label="VSModTemplate Content">
+        <Content Include="assets/**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Update="modinfo.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

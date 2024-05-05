@@ -1,0 +1,5 @@
+﻿{
+  "search-mode": "Modo de búsqueda por proximidad",
+  "ore-found": "El mineral más cercano está a {0} bloques!",
+  "ore-not-found": "No se ha encontrado mineral en un radio de {0} bloques."
+}
