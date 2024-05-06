@@ -4,7 +4,7 @@
   "name": "Proximity Prospecting Pick Mode",
   "authors": ["Shindou Jeikobu"],
   "description": "Adds a third prospecting pick mode allowing you to see the distance to closest ore block.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependency": {
     "survival": "*"
   }
