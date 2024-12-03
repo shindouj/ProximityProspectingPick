@@ -16,6 +16,6 @@ static class ObjectExtensions {
     }
 
     public static bool IsPropickable(this Block self) {
-        return self.Attributes["propickable"].AsBool();
+        return self.Attributes?["propickable"]?.AsBool() == true;
     }
 }
