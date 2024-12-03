@@ -16,8 +16,8 @@ public class ProspectingPickPatch {
     public static bool OnBlockBrokenWith(ItemProspectingPick __instance, ref bool __result, IWorldAccessor world, Entity byEntity, ItemSlot itemslot,
         BlockSelection blockSel, float dropQuantityMultiplier) {
         var toolMode = __instance.GetToolMode(itemslot, (byEntity as EntityPlayer)?.Player, blockSel);
-
-        if (toolMode != 2) {
+        
+        if (toolMode != ProximityProspectingPick.SkillItems.Count - 1) {
             return true;
         }
 

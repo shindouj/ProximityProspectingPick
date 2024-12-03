@@ -9,11 +9,11 @@ using Vintagestory.API.Common;
 [assembly: ComVisible(false)]
 [assembly: Guid("55d051b3-13e7-41d2-833d-b02a501b8050")]
 
-[assembly: AssemblyVersion("1.0.1")]
-[assembly: AssemblyFileVersion("1.0.1")]
+[assembly: AssemblyVersion("1.0.2")]
+[assembly: AssemblyFileVersion("1.0.2")]
 
 [assembly: ModInfo("Proximity Prospecting Pick Mode", "proximityprospectingpick",
-    Version = "1.0.1",
+    Version = "1.0.2",
     Description = "Adds a third prospecting pick mode allowing you to see the distance to closest ore block.",
     Authors = new[] { "Shindou Jeikobu" }
 )]
